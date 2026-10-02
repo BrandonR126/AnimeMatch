@@ -1,2 +1,2 @@
-# OtakuMatch
+# AnimeMatch
 Project for CodeLabs
