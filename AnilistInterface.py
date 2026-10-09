@@ -3,19 +3,21 @@ import requests
 # AniList GraphQL API endpoint
 url = "https://graphql.anilist.co"
 
-def GetTop10(genre=None, tag=None):
+def GetTopAnime(genreIn=None, tagIn=None, genreNotIn=None, tagNotIn=None, results=10):
     # Define Variables for the Query
     variables = {
-        "genre": genre,
-        "tag": tag,
+        "genreIn": genreIn,
+        "tagIn": tagIn,
+        "genreNotIn": genreNotIn,
+        "tagNotIn": tagNotIn,
         "page": 1,
-        "perPage": 10              # Get top 10 most popular
+        "perPage": results              # Get top 10 most popular
     }
 
     query = """
-    query ($genre: String, $tag: String, $page: Int, $perPage: Int) {
+    query ($genreIn: [String], $tagIn: [String], $genreNotIn: [String], $tagNotIn: [String], $page: Int, $perPage: Int) {
         Page(page: $page, perPage: $perPage) {
-            media(genre: $genre, tag: $tag, sort: POPULARITY_DESC) {
+            media(genre_in: $genreIn, tag_in: $tagIn, genre_not_in: $genreNotIn, tag_not_in: $tagNotIn, sort: POPULARITY_DESC) {
                 title {
                     romaji
                     english
@@ -37,7 +39,6 @@ def GetTop10(genre=None, tag=None):
     # Output the Results
     if response.status_code == 200:
         data = response.json()["data"]["Page"]["media"]
-        print(f"Top Popular Anime with '{tag}' Tag:\n")
         for i, anime in enumerate(data, 1):
             title = anime["title"]["english"] or anime["title"]["romaji"] # return english title if available, otherwise romaji (could become a setting?)
             print(f"{i}. {title}")
