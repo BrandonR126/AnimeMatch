@@ -1,6 +1,10 @@
+import AnilistInterface
+
 def main():
-    print("Hello world!")
-    print("Goodbye world...")
+    # Example
+    tags = "Afterlife"
+    genres = "Mystery", "Psychological", "Thriller"
+    AnilistInterface.GetTopAnime(tagIn=tags, results=20)
 
 
 main()
