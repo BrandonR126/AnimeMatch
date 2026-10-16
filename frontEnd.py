@@ -3,9 +3,11 @@ from tkinter import messagebox
 import AnilistInterface as anilist
 
 
-def search_by_genre():
+def SearchByGenre():
     genre = genre_entry.get().strip()
 
+    print(genre)
+    
     if genre == "":
         messagebox.showwarning("Missing input", "Please type a genre")
         return
@@ -15,16 +17,16 @@ def search_by_genre():
     root.update()
 
     anime_list = anilist.GetTopAnime(genreIn=genre, results=5)
-
-    if len(anime_list) == 0:
+    
+    if not anime_list:
         results_box.insert(tk.END, "No results found.\n")
         return
 
     for i, anime in enumerate(anime_list, 1):
-        results_box.insert(tk.END, str(i) + ". " + anilist.format_anime(anime) + "\n")
+        results_box.insert(tk.END, str(i) + ". " + anilist.FormatAnime(anime) + "\n")
 
 
-def search_by_title():
+def SearchByTitle():
     title = title_entry.get().strip()
 
     if title == "":
@@ -37,11 +39,12 @@ def search_by_title():
 
     anime = anilist.GetAnimeFromTitle(title)
 
-    if anime is None:
+    if not anime:
         results_box.insert(tk.END, "No anime found.\n")
         return
 
-    results_box.insert(tk.END, anilist.format_anime(anime))
+    results_box.insert(tk.END, anilist.FormatAnime(anime))
+
 
 
 # Create the window
@@ -61,7 +64,7 @@ genre_entry = tk.Entry(genre_frame, width=25)
 genre_entry.pack(side=tk.LEFT, padx=5)
 genre_entry.insert(0, "Action")
 
-tk.Button(genre_frame, text="Search by Genre", command=search_by_genre).pack(side=tk.LEFT)
+tk.Button(genre_frame, text="Search by Genre", command=SearchByGenre).pack(side=tk.LEFT)
 
 # Title search
 title_frame = tk.Frame(root)
@@ -72,7 +75,7 @@ title_entry = tk.Entry(title_frame, width=25)
 title_entry.pack(side=tk.LEFT, padx=5)
 title_entry.insert(0, "Oshi no Ko")
 
-tk.Button(title_frame, text="Search by Title", command=search_by_title).pack(side=tk.LEFT)
+tk.Button(title_frame, text="Search by Title", command=SearchByTitle).pack(side=tk.LEFT)
 
 # Results area (simple Text + Scrollbar)
 tk.Label(root, text="Results:", font=("Arial", 12)).pack(pady=(15, 0))

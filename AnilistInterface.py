@@ -15,7 +15,7 @@ def GetTopAnime(genreIn=None, tagIn=None, genreNotIn=None, tagNotIn=None, result
     }
 
     query = """
-    query ( $tagIn: [String], $genreNotIn: [String], $tagNotIn: [String], $page: Int, $perPage: Int) {
+    query ( $genreIn: [String],$tagIn: [String], $genreNotIn: [String], $tagNotIn: [String], $page: Int, $perPage: Int) {
         Page(page: $page, perPage: $perPage) {
             media(genre_in: $genreIn, tag_in: $tagIn, genre_not_in: $genreNotIn, tag_not_in: $tagNotIn, sort: POPULARITY_DESC) {
                 title {
@@ -38,18 +38,19 @@ def GetTopAnime(genreIn=None, tagIn=None, genreNotIn=None, tagNotIn=None, result
 
     # Output the Results
     if response.status_code == 200:
-        data = response.json()["data"]["Page"]["media"]
-        for i, anime in enumerate(data, 1):
+        animes = response.json()["data"]["Page"]["media"]
+        for i, eachAnime in enumerate(animes, 1):
             # NOTE: This is a temporary solution to output results. should be moved into dedicated function for UI in the future.
-            title = anime["title"]["english"] or anime["title"]["romaji"] # return english title if available, otherwise romaji (could become a setting?)
+            title = eachAnime["title"]["english"] or eachAnime["title"]["romaji"] # return english title if available, otherwise romaji (could become a setting?)
             print(f"{i}. {title}")
-            print(f"   Popularity: {anime['popularity']:,} members | Score: {anime['averageScore']}/100")
-            print(f"   Genres: {', '.join(anime['genres'])}")
-            print(f"   Tags: {', '.join([tag['name'] for tag in anime['tags']])}\n")
+            print(f"   Popularity: {eachAnime['popularity']:,} members | Score: {eachAnime['averageScore']}/100")
+            print(f"   Genres: {', '.join(eachAnime['genres'])}")
+            print(f"   Tags: {', '.join([tag['name'] for tag in eachAnime['tags']])}\n")
 
-            return anime
+        return animes
     else:
         print(f"Failed with status code {response.status_code}: {response.text}")
+
 
 
 def GetAnimeFromTitle(title):
