@@ -94,3 +94,19 @@ def GetAnimeFromTitle(title):
     
     else:
         print(f"Failed with status code {response.status_code}: {response.text}")
+
+def FormatAnime(anime): 
+    if anime is None:
+        return "No anime found."
+
+    title = anime["title"]["english"] or anime["title"]["romaji"]
+    score = anime["averageScore"]
+    popularity = anime["popularity"]
+    genres = ", ".join(anime["genres"])
+    tags = ", ".join([tag["name"] for tag in anime["tags"]])
+
+    text = title + "\n"
+    text += "   Score: " + str(score) + "/100 | Popularity: " + str(popularity) + "\n"
+    text += "   Genres: " + genres + "\n"
+    text += "   Tags: " + tags + "\n"
+    return text
