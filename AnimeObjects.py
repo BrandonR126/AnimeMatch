@@ -47,7 +47,7 @@ def make_anime(data):
 
     score = data.get("averageScore")
     if score is None:
-        score = "N/A"
+        score = 0
 
     popularity = data.get("popularity") or 0
     genres = data.get("genres") or []

@@ -15,11 +15,14 @@ def BySimilarFromTitle(title=None):
 
     # convert anime into obj and get tags
     anime_obj = aniObjects.make_anime(anime)
-    anime_obj.tags = manager.FilterTagsByRank(anime_obj.tags, 70)
     anime_obj.tags = manager.SortTagsByRank(anime_obj.tags)
+    tagRank = anime_obj.tags[0]["rank"]
+    anime_obj.tags = manager.FilterTagsByRank(anime_obj.tags, tagRank - 5)  # Filter tags to only include those within 10 ranks of the highest rank
 
+    tagNames = [tag["name"] for tag in anime_obj.tags]
+    genreNames = anime_obj.genres
     # find similar anime, convert into objects, and exclude the searched anime from the results
-    similarAnime = anilist.GetTopAnime(tagIn=anime_obj.tags[0], genreIn=anime_obj.genres[0], results=10)
+    similarAnime = anilist.GetTopAnime(genreIn = genreNames, results=10) # not using tags for now since the tags seem to really limit what is returned. could be a setting in the future to use tags or not.
     similarAnimeObj = []
     for anime in similarAnime:
         anime = aniObjects.make_anime(anime)
