@@ -102,6 +102,13 @@ def test_filter_tags_by_rank():
         return True
     else: return False
 
+def test_sort_tags_by_rank():
+    sorted_tags = manager.SortTagsByRank(TestAnime1.tags)
+    print("Sorted Tags:", sorted_tags)
+    if sorted_tags[0]["rank"] == 85 and sorted_tags[3]["rank"] == 50:
+        return True
+    else: return False
+
 def test_filter_by_attribute():
     min_score = 80
     filtered_items = manager.FilterByAttribute(anime_list, "score", min_score)
@@ -125,8 +132,9 @@ run_test("2. Search by Tag", test_tag)
 run_test("3. Search by Title", test_title)
 run_test("4. No filters", test_no_filters)
 run_test("5. Filter Tags by Rank", test_filter_tags_by_rank)
-run_test("6. Filter by Attribute", test_filter_by_attribute)
-run_test("7. Sort by Attribute", test_sort_by_attribute)
+run_test("6. Sort Tags by Rank", test_sort_tags_by_rank)
+run_test("7. Filter by Attribute", test_filter_by_attribute)
+run_test("8. Sort by Attribute", test_sort_by_attribute)
 
 print("\nAll tests finished.")
 print("Passed: " + str(pass_count))

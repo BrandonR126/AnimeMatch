@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import messagebox
 import AnilistInterface as anilist
+import AnimeManager as manager
+import AnimeObjects as aniObjects
 
 
 def SearchByGenre():
@@ -43,7 +45,12 @@ def SearchByTitle():
         results_box.insert(tk.END, "No anime found.\n")
         return
 
-    results_box.insert(tk.END, anilist.FormatAnime(anime))
+    anime_obj = aniObjects.makeAnimeFromDict(anime)
+    anime_obj = manager.FilterTagsByRank(anime_obj.tags, 70)
+    anime_obj = manager.SortTagsByRank(anime_obj.tags)
+    similarAnime = anilist.GetTopAnime(tagIn=anime_obj.tags[0], genreIn=anime_obj.genres[0], results=3)
+
+    results_box.insert(tk.END, anilist.FormatAnime(similarAnime[0]) + "\n")
 
 
 
