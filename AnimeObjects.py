@@ -4,7 +4,7 @@ class Anime:
         self.score = score
         self.popularity = popularity
         self.genres = genres          # list of strings
-        self.tags = tags              # list of strings
+        self.tags = tags              # list of dictionaries with "name" and "rank" kvps
 
     def __str__(self):
         """
@@ -14,7 +14,10 @@ class Anime:
         text = self.title + "\n"
         text += "   Score: " + str(self.score) + "/100 | Popularity: " + str(self.popularity) + "\n"
         text += "   Genres: " + ", ".join(self.genres) + "\n"
-        text += "   Tags: " + ", ".join(self.tags) + "\n"
+
+        # format tags into list of strings
+        tagStrings = [f"{tag['name']} (Rank: {tag['rank']})" for tag in self.tags]
+        text += "   Tags: " + ", ".join(tagStrings) + "\n"
         return text
 
     def to_dict(self):
@@ -49,11 +52,11 @@ def make_anime(data):
     popularity = data.get("popularity") or 0
     genres = data.get("genres") or []
 
-    tags = {}
+    tags = []
     for tag in data.get("tags") or []:
-        name = tag.get("name")
-        rank = tag.get("rank", 0)
-        if name:
-            tags[name] = rank
+        tags.append({
+            "name": tag.get("name"),
+            "rank": tag.get("rank")
+        })
 
     return Anime(title, score, popularity, genres, tags)

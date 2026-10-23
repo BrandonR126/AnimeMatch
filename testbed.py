@@ -124,6 +124,14 @@ def test_sort_by_attribute():
         return True
     else: return False
 
+def test_exclude_searched_anime():
+    searched_anime = TestAnime1
+    filtered_list = manager.ExcludeSearchedAnime(anime_list, searched_anime)
+    print("Filtered List:", filtered_list)
+    if searched_anime not in filtered_list and len(filtered_list) == 2:
+        return True
+    else: return False
+
 print("AnimeMatch API Testbed")
 print("Running tests...")
 
@@ -135,6 +143,7 @@ run_test("5. Filter Tags by Rank", test_filter_tags_by_rank)
 run_test("6. Sort Tags by Rank", test_sort_tags_by_rank)
 run_test("7. Filter by Attribute", test_filter_by_attribute)
 run_test("8. Sort by Attribute", test_sort_by_attribute)
+run_test("9. Exclude Searched Anime", test_exclude_searched_anime)
 
 print("\nAll tests finished.")
 print("Passed: " + str(pass_count))
