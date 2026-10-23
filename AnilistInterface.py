@@ -27,6 +27,7 @@ def GetTopAnime(genreIn=None, tagIn=None, genreNotIn=None, tagNotIn=None, result
                 genres
                 tags {
                     name
+                    rank
                 }
             }
         }

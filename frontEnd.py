@@ -1,12 +1,9 @@
 import tkinter as tk
 from tkinter import messagebox
-import AnilistInterface as anilist
-
+import SearchFunctions as search
 
 def SearchByGenre():
     genre = genre_entry.get().strip()
-
-    print(genre)
     
     if genre == "":
         messagebox.showwarning("Missing input", "Please type a genre")
@@ -16,17 +13,17 @@ def SearchByGenre():
     results_box.insert(tk.END, "Searching for genre: " + genre + "...\n\n")
     root.update()
 
-    anime_list = anilist.GetTopAnime(genreIn=genre, results=5)
-    
+    anime_list = search.ByGenre(genre=genre)
+
     if not anime_list:
         results_box.insert(tk.END, "No results found.\n")
         return
 
-    for i, anime in enumerate(anime_list, 1):
-        results_box.insert(tk.END, str(i) + ". " + anilist.FormatAnime(anime) + "\n")
+    for anime in anime_list:
+        results_box.insert(tk.END, str(anime) + "\n")
 
 
-def SearchByTitle():
+def SearchBySimilarFromTitle():
     title = title_entry.get().strip()
 
     if title == "":
@@ -34,18 +31,17 @@ def SearchByTitle():
         return
 
     results_box.delete("1.0", tk.END)
-    results_box.insert(tk.END, "Searching for title: " + title + "...\n\n")
+    results_box.insert(tk.END, "Searching for similar animes to: " + title + "...\n\n")
     root.update()
 
-    anime = anilist.GetAnimeFromTitle(title)
+    similarAnimeObj = search.BySimilarFromTitle(title=title)
 
-    if not anime:
-        results_box.insert(tk.END, "No anime found.\n")
+    if not similarAnimeObj:
+        results_box.insert(tk.END, "No similar animes found.\n")
         return
 
-    results_box.insert(tk.END, anilist.FormatAnime(anime))
-
-
+    for anime in similarAnimeObj:
+        results_box.insert(tk.END, str(anime) + "\n")
 
 # Create the window
 root = tk.Tk()
@@ -70,12 +66,12 @@ tk.Button(genre_frame, text="Search by Genre", command=SearchByGenre).pack(side=
 title_frame = tk.Frame(root)
 title_frame.pack(pady=5)
 
-tk.Label(title_frame, text="Title: ").pack(side=tk.LEFT)
+tk.Label(title_frame, text="Search by Similar to Title: ").pack(side=tk.LEFT)
 title_entry = tk.Entry(title_frame, width=25)
 title_entry.pack(side=tk.LEFT, padx=5)
 title_entry.insert(0, "Oshi no Ko")
 
-tk.Button(title_frame, text="Search by Title", command=SearchByTitle).pack(side=tk.LEFT)
+tk.Button(title_frame, text="Search by Similar to Title", command=SearchBySimilarFromTitle).pack(side=tk.LEFT)
 
 # Results area (simple Text + Scrollbar)
 tk.Label(root, text="Results:", font=("Arial", 12)).pack(pady=(15, 0))
