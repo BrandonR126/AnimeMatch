@@ -39,16 +39,7 @@ def GetTopAnime(genreIn=None, tagIn=None, genreNotIn=None, tagNotIn=None, result
 
     # Output the Results
     if response.status_code == 200:
-        animes = response.json()["data"]["Page"]["media"]
-        for i, eachAnime in enumerate(animes, 1):
-            # NOTE: This is a temporary solution to output results. should be moved into dedicated function for UI in the future.
-            title = eachAnime["title"]["english"] or eachAnime["title"]["romaji"] # return english title if available, otherwise romaji (could become a setting?)
-            print(f"{i}. {title}")
-            print(f"   Popularity: {eachAnime['popularity']:,} members | Score: {eachAnime['averageScore']}/100")
-            print(f"   Genres: {', '.join(eachAnime['genres'])}")
-            print(f"   Tags: {', '.join([tag['name'] for tag in eachAnime['tags']])}\n")
-
-        return animes
+        return response.json()["data"]["Page"]["media"]
     else:
         print(f"Failed with status code {response.status_code}: {response.text}")
 
@@ -83,17 +74,7 @@ def GetAnimeFromTitle(title):
 
     # Output the Results
     if response.status_code == 200:
-        anime = response.json()["data"]["Media"]
-
-        # NOTE: This is a temporary solution to output results. should be moved into dedicated function for UI in the future.
-        title = anime["title"]["english"] or anime["title"]["romaji"]
-        print(f"Title: {title}")
-        print(f"Popularity: {anime['popularity']:,} members | Score: {anime['averageScore']}/100")
-        print(f"Genres: {', '.join(anime['genres'])}")
-        print(f"Tags: {', '.join([tag['name'] for tag in anime['tags']])}\n")
-
-        return anime
-    
+        return response.json()["data"]["Media"]
     else:
         print(f"Failed with status code {response.status_code}: {response.text}")
 

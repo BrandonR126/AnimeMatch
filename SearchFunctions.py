@@ -1,9 +1,18 @@
+import re
+
 import AnilistInterface as anilist
 import AnimeManager as manager
 import AnimeObjects as aniObjects
 
 def ByGenre(genre=None):
     animeList = anilist.GetTopAnime(genreIn=genre, results=5)
+    formatedAnime = []
+    for anime in animeList:
+        formatedAnime.append(aniObjects.make_anime(anime))
+    return formatedAnime
+
+def ByFilter(genres=None, tags=None, genresNotIn=None, tagsNotIn=None):
+    animeList = anilist.GetTopAnime(genreIn=genres, tagIn=tags, genreNotIn=genresNotIn, tagNotIn=tagsNotIn)
     formatedAnime = []
     for anime in animeList:
         formatedAnime.append(aniObjects.make_anime(anime))
@@ -35,3 +44,11 @@ def BySimilarFromTitle(title=None):
     return similarAnimeObj[:5]  # Return top 5 results
 
 
+def GetListFromTextEntry(entry): 
+    string = entry.get().strip()
+    if(string == ""):
+        return None
+
+    items = [item.strip() for item in re.split(r'[,;]+', string) if item.strip()]
+    
+    return items if items else None
