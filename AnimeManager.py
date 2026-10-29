@@ -19,7 +19,7 @@ def ExcludeSearchedAnime(anime_list, searched_anime):
 
     return [anime for anime in anime_list if anime.title != searched_anime.title]
 
-def RankAnimeByStats(anime_list):
+def RankAnimeByStats(anime_list, searched_anime):
     """
     Rank the anime list based on a combination of score and popularity.
     This is a simple ranking algorithm that gives equal weight to both attributes.
@@ -29,12 +29,18 @@ def RankAnimeByStats(anime_list):
 
     # Calculate a combined score for each anime
     for anime in anime_list:
+        tagScore = 0
+        for searchedTag in searched_anime.tags:
+            for animeTag in anime.tags:
+                if searchedTag["name"] == animeTag["name"]:
+                    tagScore += 10
+
         score = getattr(anime, 'score', 0) or 0
         popularity = getattr(anime, 'popularity', 0) or 0
         # Normalize score and popularity to a scale of 0-100
         normalized_score = (score / 100) * 50  # Score contributes up to 50 points
         normalized_popularity = (popularity / max(1, max(getattr(a, 'popularity', 0) for a in anime_list))) * 50  # Popularity contributes up to 50 points
-        anime.combined_score = normalized_score + normalized_popularity
+        anime.combined_score = normalized_score + normalized_popularity + tagScore
 
     # Sort the list based on the combined score in descending order
     return sorted(anime_list, key=lambda x: getattr(x, 'combined_score', 0), reverse=True)

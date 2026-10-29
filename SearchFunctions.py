@@ -26,12 +26,12 @@ def BySimilarFromTitle(title=None):
     anime_obj = aniObjects.make_anime(anime)
     anime_obj.tags = manager.SortTagsByRank(anime_obj.tags)
     tagRank = anime_obj.tags[0]["rank"]
-    anime_obj.tags = manager.FilterTagsByRank(anime_obj.tags, tagRank - 5)  # Filter tags to only include those within 10 ranks of the highest rank
+    anime_obj.tags = manager.FilterTagsByRank(anime_obj.tags, tagRank - 10)
 
     tagNames = [tag["name"] for tag in anime_obj.tags]
     genreNames = anime_obj.genres
     # find similar anime, convert into objects, and exclude the searched anime from the results
-    similarAnime = anilist.GetTopAnime(genreIn = genreNames, results=10) # not using tags for now since the tags seem to really limit what is returned. could be a setting in the future to use tags or not.
+    similarAnime = anilist.GetTopAnime(genreIn = genreNames, results=10)
     similarAnimeObj = []
     for anime in similarAnime:
         anime = aniObjects.make_anime(anime)
@@ -39,9 +39,9 @@ def BySimilarFromTitle(title=None):
         similarAnimeObj.append(anime)
     similarAnimeObj = manager.ExcludeSearchedAnime(similarAnimeObj, anime_obj)
 
-    similarAnimeObj = manager.RankAnimeByStats(similarAnimeObj)
+    similarAnimeObj = manager.RankAnimeByStats(similarAnimeObj, anime_obj)
 
-    return similarAnimeObj[:5]  # Return top 5 results
+    return similarAnimeObj
 
 
 def GetListFromTextEntry(entry): 
