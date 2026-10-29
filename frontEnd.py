@@ -266,4 +266,5 @@ def start_app():
     build_window()
     root.mainloop()
 
-    start_app()
+
+start_app()
