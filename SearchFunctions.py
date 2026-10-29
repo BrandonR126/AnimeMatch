@@ -1,4 +1,5 @@
 import re
+import time
 
 import AnilistInterface as anilist
 import AnimeManager as manager
@@ -21,6 +22,8 @@ def ByFilter(genres=None, tags=None, genresNotIn=None, tagsNotIn=None):
 
 def BySimilarFromTitle(title=None):
     anime = anilist.GetAnimeFromTitle(title)
+
+    time.sleep(0.5) # avoid 429 too many requests errors
 
     # convert anime into obj and get tags
     anime_obj = aniObjects.make_anime(anime)

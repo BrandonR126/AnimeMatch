@@ -11,7 +11,7 @@ def GetTopAnime(genreIn=None, tagIn=None, genreNotIn=None, tagNotIn=None, result
         "genreNotIn": genreNotIn,
         "tagNotIn": tagNotIn,
         "page": 1,
-        "perPage": results              # Get top 10 most popular
+        "perPage": results,
     }
 
     query = """
@@ -48,7 +48,7 @@ def GetTopAnime(genreIn=None, tagIn=None, genreNotIn=None, tagNotIn=None, result
 def GetAnimeFromTitle(title):
     # Define Variables for the Query
     variables = {
-        "title": title
+        "title": title,
     }
 
     query = """
