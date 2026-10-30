@@ -33,9 +33,15 @@ def SetBusy(is_busy):
 
 def ShowSearching(message):
     """Let the user see that a search is running. The window pauses until AniList answers."""
+    ClearText()
     SetBusy(True)
     WriteResults(message + "\n")
     root.update()
+
+def ClearText():
+    """Clear text box"""
+    results_box.delete("1.0", tk.END)
+
 
 def WriteResults(text):
     """Put text in the results box and scroll back to the first line."""
