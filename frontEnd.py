@@ -162,7 +162,6 @@ def build_window():
     tk.Label(title_frame, text="Search by Similar to Title: ").pack(side=tk.LEFT)
     title_entry = tk.Entry(title_frame, width=25)
     title_entry.pack(side=tk.LEFT, padx=5)
-    title_entry.insert(0, "Oshi no Ko")
 
     title_button = tk.Button(title_frame, text="Search by Similar to Title", command=SearchBySimilarFromTitle)
     title_button.pack(side=tk.LEFT)
