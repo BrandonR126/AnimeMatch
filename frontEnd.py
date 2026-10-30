@@ -189,6 +189,3 @@ def start_app():
     """Open the window and wait for button clicks. main.py calls this."""
     build_window()
     root.mainloop()
-
-
-start_app()
