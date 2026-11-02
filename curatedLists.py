@@ -17,6 +17,13 @@ brandonList = [
     "[Oshi No Ko]",
     "Chainsaw Man",
 ]
+alexcsanderList = [
+    "Mushishi,"
+    "Ping Pong the Animation",
+    "Kaiba",
+    "Odd Taxi",
+    "The Tatami Galaxy",
+]
 
 beginnerList = [
     "Spy x Family",
