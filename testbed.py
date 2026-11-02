@@ -1,7 +1,8 @@
 import AnilistInterface as anilist
 import AnimeManager as manager
 import AnimeObjects as anime
-
+import animeCache
+import curatedLists
 
 pass_count = 0
 fail_count = 0
@@ -132,6 +133,23 @@ def test_exclude_searched_anime():
         return True
     else: return False
 
+def test_get_list_no_cache():
+    curated_list = ["Death Note", "Attack on Titan", "Cowboy Bebop"]
+    anime_objects = curatedLists.GetList(curated_list, useCache=False)
+    print("Anime Objects:", anime_objects)
+    if len(anime_objects) == 3:
+        return True
+    else: return False
+
+def test_get_list_with_cache():
+    curated_list = ["Death Note", "Attack on Titan", "Cowboy Bebop"]
+    curatedLists.GetList(curated_list) # fetches and caches the data
+    cached_anime_objects = curatedLists.GetList(curated_list, useAPI=False) # fetches from cache
+    print("Cache:", cached_anime_objects)
+    if len(cached_anime_objects) == 3:
+        return True
+    else: return False
+
 print("AnimeMatch API Testbed")
 print("Running tests...")
 
@@ -144,6 +162,8 @@ run_test("6. Sort Tags by Rank", test_sort_tags_by_rank)
 run_test("7. Filter by Attribute", test_filter_by_attribute)
 run_test("8. Sort by Attribute", test_sort_by_attribute)
 run_test("9. Exclude Searched Anime", test_exclude_searched_anime)
+run_test("10. Get List without Cache", test_get_list_no_cache)
+run_test("11. Get List with Cache", test_get_list_with_cache)
 
 print("\nAll tests finished.")
 print("Passed: " + str(pass_count))
