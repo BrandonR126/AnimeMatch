@@ -4,6 +4,7 @@ import time
 import AnilistInterface as anilist
 import AnimeManager as manager
 import AnimeObjects as aniObjects
+import animeCache as animeCache
 
 def ByGenre(genre=None):
     animeList = anilist.GetTopAnime(genreIn=genre, results=5)
@@ -21,7 +22,16 @@ def ByFilter(genres=None, tags=None, genresNotIn=None, tagsNotIn=None):
 
 
 def BySimilarFromTitle(title=None):
-    anime = anilist.GetAnimeFromTitle(title)
+    cache = animeCache.load_cache()
+    if title in cache:
+        anime = cache[title]
+    else:
+        anime = anilist.GetAnimeFromTitle(title)
+        if anime is None:
+            return []
+        cache[title] = anime
+        animeCache.save_cache(cache) # update cache with the newly fetched anime data
+        
 
     time.sleep(0.5) # avoid 429 too many requests errors
 
@@ -31,7 +41,6 @@ def BySimilarFromTitle(title=None):
     tagRank = anime_obj.tags[0]["rank"]
     anime_obj.tags = manager.FilterTagsByRank(anime_obj.tags, tagRank - 10)
 
-    tagNames = [tag["name"] for tag in anime_obj.tags]
     genreNames = anime_obj.genres
     # find similar anime, convert into objects, and exclude the searched anime from the results
     similarAnime = anilist.GetTopAnime(genreIn = genreNames, results=10)
