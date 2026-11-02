@@ -26,6 +26,9 @@ beginnerList = [
     "My Hero Academia",
 ]
 
+# NOTE: useCache and useAPI are primarily for testing purposes. In production, both should be set to True. Other functions using cache
+# do NOT need to have these parameters. We only need one for testing purposes.
+# Should prob make a function just for testing cache, but this works for now.
 def GetList(animeList, useCache=True, useAPI = True): # set useCache to False to ignore cache and fetch fresh data, set useAPI to False to only use cache
     if not animeList:
         return []
