@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import messagebox, font
 import AnimeObjects as aniObjects
 import SearchFunctions as search
 
@@ -121,60 +121,60 @@ def build_window():
     root.minsize(640, 560)
 
     # Title
-    tk.Label(root, text="AnimeMatch", font=("Arial", 18, "bold")).pack(pady=10)
+    tk.Label(root, text="AnimeMatch", font=("OCR A Extended", 20, "bold")).pack(pady=10)
 
     # genre
     genre_frame = tk.Frame(root)
     genre_frame.pack(pady=5)
 
-    tk.Label(genre_frame, text="Genre:").pack(side=tk.LEFT)
-    genre_entry = tk.Entry(genre_frame, width=25)
+    tk.Label(genre_frame, text="Genre:",font=("OCR A Extended", 11)).pack(side=tk.LEFT)
+    genre_entry = tk.Entry(genre_frame, width=25,font=("Yu Gothic Medium", 11))
     genre_entry.pack(side=tk.LEFT, padx=5)
 
     # tag
     tag_frame = tk.Frame(root)
     tag_frame.pack(pady=5)
 
-    tk.Label(tag_frame, text="Tag:").pack(side=tk.LEFT)
-    tag_entry = tk.Entry(tag_frame, width=25)
+    tk.Label(tag_frame, text="Tag:", font=("OCR A Extended", 11)).pack(side=tk.LEFT)
+    tag_entry = tk.Entry(tag_frame, width=25,font=("Yu Gothic Medium", 11))
     tag_entry.pack(side=tk.LEFT, padx=5)
 
     # exclude genre
     exclude_genre_frame = tk.Frame(root)
     exclude_genre_frame.pack(pady=5)
 
-    tk.Label(exclude_genre_frame, text="Exclude Genre:").pack(side=tk.LEFT)
-    exclude_genre_entry = tk.Entry(exclude_genre_frame, width=25)
+    tk.Label(exclude_genre_frame, text="Exclude Genre:", font=("OCR A Extended", 11)).pack(side=tk.LEFT)
+    exclude_genre_entry = tk.Entry(exclude_genre_frame, width=25,font=("Yu Gothic Medium", 11))
     exclude_genre_entry.pack(side=tk.RIGHT, padx=5)
 
     # exclude tag
     exclude_tag_frame = tk.Frame(root)
     exclude_tag_frame.pack(pady=5)
 
-    tk.Label(exclude_tag_frame, text="Exclude Tag:").pack(side=tk.LEFT)
-    exclude_tag_entry = tk.Entry(exclude_tag_frame, width=25)
+    tk.Label(exclude_tag_frame, text="Exclude Tag:", font=("OCR A Extended", 11)).pack(side=tk.LEFT)
+    exclude_tag_entry = tk.Entry(exclude_tag_frame, width=25, font=("Yu Gothic Medium", 11))
     exclude_tag_entry.pack(side=tk.RIGHT, padx=5)
 
     # search button
     filtered_search_frame = tk.Frame(root)
     filtered_search_frame.pack(pady=5)
-    filter_button = tk.Button(filtered_search_frame, text="Search with Filters", command=SearchByFilter)
+    filter_button = tk.Button(filtered_search_frame, text="Search", font=("MS Gothic", 12, "bold"), command=SearchByFilter)
     filter_button.pack(side=tk.LEFT)
 
     # Title search
     title_frame = tk.Frame(root)
     title_frame.pack(pady=15)
 
-    tk.Label(title_frame, text="Search by Similar to Title: ").pack(side=tk.LEFT)
-    title_entry = tk.Entry(title_frame, width=25)
+    tk.Label(title_frame, text="Search by Similar to Title: ", font=("OCR A Extended", 11)).pack(side=tk.LEFT)
+    title_entry = tk.Entry(title_frame, width=25, font=("Yu Gothic Medium", 11))
     title_entry.pack(side=tk.LEFT, padx=5)
 
-    title_button = tk.Button(title_frame, text="Search by Similar to Title", command=SearchBySimilarFromTitle)
+    title_button = tk.Button(title_frame, text="Search", font=("MS Gothic", 12, "bold"), command=SearchBySimilarFromTitle)
     title_button.pack(side=tk.LEFT)
     search_buttons = [filter_button, title_button]
 
     # Results area (simple Text + Scrollbar)
-    tk.Label(root, text="Results:", font=("Arial", 12)).pack(pady=(15, 0))
+    tk.Label(root, text="Results:", font=("MS Gothic", 12, "bold")).pack(pady=(15, 0))
 
     frame = tk.Frame(root)
     frame.pack(padx=10, pady=5, fill=tk.BOTH, expand=True)
@@ -182,7 +182,7 @@ def build_window():
     scrollbar = tk.Scrollbar(frame)
     scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
-    results_box = tk.Text(frame, width=70, height=16, wrap=tk.WORD, font=("Arial", 10), yscrollcommand=scrollbar.set)
+    results_box = tk.Text(frame, width=70, height=16, wrap=tk.WORD, font=("Yu Gothic Medium", 10), yscrollcommand=scrollbar.set)
     results_box.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
     scrollbar.config(command=results_box.yview)
