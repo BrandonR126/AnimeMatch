@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import messagebox, font
 import AnimeObjects as aniObjects
 import SearchFunctions as search
-
+import curatedLists as curated
 
 # Widgets are created in build_window() and used by the search buttons.
 root = None
@@ -27,9 +27,6 @@ def SetBusy(is_busy):
 
     for button in search_buttons:
         button.config(state=state)
-
-
-
 
 def ShowSearching(message):
     """Let the user see that a search is running. The window pauses until AniList answers."""
@@ -117,11 +114,18 @@ def build_window():
 
     root = tk.Tk()
     root.title("AnimeMatch")
-    root.geometry("680x720")
-    root.minsize(640, 560)
+    root.geometry("1920x1080")
+    root.minsize(1920, 1080)
 
     # Title
     tk.Label(root, text="AnimeMatch", font=("OCR A Extended", 20, "bold")).pack(pady=10)
+
+    # lists
+    list_frame = tk.Frame(root)
+    list_frame.pack(pady=5)
+    tk.Label(list_frame, text="Curated Lists:", font=("OCR A Extended", 11)).pack(side=tk.LEFT)
+    list_button = tk.Button(list_frame, text="Open Lists", font=("MS Gothic", 12, "bold"), command=open_lists_window)
+    list_button.pack(side=tk.LEFT, padx=5)
 
     # genre
     genre_frame = tk.Frame(root)
@@ -189,8 +193,31 @@ def build_window():
 
     return root
 
-
 def start_app():
     """Open the window and wait for button clicks. main.py calls this."""
     build_window()
     root.mainloop()
+
+
+# creates separate window that makes buttons for each curated list
+def open_lists_window():
+    lists_window = tk.Toplevel(root)
+    lists_window.title("Curated Anime Lists")
+    lists_window.geometry("600x400")
+
+    label = tk.Label(lists_window, text="Select a curated anime list:", font=("OCR A Extended", 14, "bold"))
+    label.pack(pady=10)
+
+    # make a button for each list in curatedLists.py
+    allLists = curated.allLists
+    for list_name in allLists.keys():
+        button = tk.Button(lists_window, text=list_name, font=("MS Gothic", 12, "bold"), 
+                           command=lambda list_data=allLists[list_name]: show_list(list_data))
+        button.pack(pady=5)
+
+# s
+def show_list(list):
+    SetBusy(True)
+    ShowSearching("Fetching curated list...")
+    anime_objects = curated.GetList(list)
+    ShowResults(anime_objects)

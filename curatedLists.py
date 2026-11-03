@@ -18,7 +18,7 @@ brandonList = [
     "Chainsaw Man",
 ]
 alexcsanderList = [
-    "Mushishi,"
+    "Mushishi",
     "Ping Pong the Animation",
     "Kaiba",
     "Odd Taxi",
@@ -32,6 +32,13 @@ beginnerList = [
     "Spirited Away",
     "My Hero Academia",
 ]
+
+allLists = {
+    "Sabrina's List": sabrinaList,
+    "Brandon's List": brandonList,
+    "Alexcsander's List": alexcsanderList,
+    "Beginner's List": beginnerList,
+}
 
 # NOTE: useCache and useAPI are primarily for testing purposes. In production, both should be set to True. Other functions using cache
 # do NOT need to have these parameters. We only need one for testing purposes.
