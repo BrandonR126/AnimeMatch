@@ -22,18 +22,9 @@ def ByFilter(genres=None, tags=None, genresNotIn=None, tagsNotIn=None):
 
 
 def BySimilarFromTitle(title=None):
-    cache = animeCache.load_cache()
-    if title in cache:
-        anime = cache[title]
-    else:
-        anime = anilist.GetAnimeFromTitle(title)
-        if anime is None:
-            return []
-        cache[title] = anime
-        animeCache.save_cache(cache) # update cache with the newly fetched anime data
-        
-
-    time.sleep(0.5) # avoid 429 too many requests errors
+    anime = anilist.GetAnimeFromTitle(title)
+    if anime is None:
+        return None
 
     # convert anime into obj and get tags
     anime_obj = aniObjects.make_anime(anime)
@@ -55,6 +46,18 @@ def BySimilarFromTitle(title=None):
 
     return similarAnimeObj
 
+def SearchByTitle(title):
+    cache = animeCache.load_cache()
+    if title in cache:
+        anime = cache[title]
+    else:
+        anime = anilist.GetAnimeFromTitle(title)
+        if anime is None:
+            return None
+        cache[title] = anime
+        animeCache.save_cache(cache) # update cache with the newly fetched anime data
+
+    return aniObjects.make_anime(anime)
 
 def GetListFromTextEntry(entry): 
     string = entry.get().strip()

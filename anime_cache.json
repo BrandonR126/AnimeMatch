@@ -2536,5 +2536,433 @@
                 "rank": 20
             }
         ]
+    },
+    "Oshi no ko": {
+        "title": {
+            "romaji": "[Oshi no Ko]",
+            "english": "OSHI NO KO"
+        },
+        "popularity": 336742,
+        "averageScore": 84,
+        "genres": [
+            "Drama",
+            "Mystery",
+            "Psychological",
+            "Supernatural"
+        ],
+        "tags": [
+            {
+                "name": "Acting",
+                "rank": 96
+            },
+            {
+                "name": "Tragedy",
+                "rank": 93
+            },
+            {
+                "name": "Idol",
+                "rank": 92
+            },
+            {
+                "name": "Revenge",
+                "rank": 89
+            },
+            {
+                "name": "Twins",
+                "rank": 83
+            },
+            {
+                "name": "Male Protagonist",
+                "rank": 83
+            },
+            {
+                "name": "Urban",
+                "rank": 82
+            },
+            {
+                "name": "Reincarnation",
+                "rank": 80
+            },
+            {
+                "name": "Heterosexual",
+                "rank": 79
+            },
+            {
+                "name": "Detective",
+                "rank": 78
+            },
+            {
+                "name": "Ensemble Cast",
+                "rank": 76
+            },
+            {
+                "name": "Coming of Age",
+                "rank": 73
+            },
+            {
+                "name": "Anti-Hero",
+                "rank": 73
+            },
+            {
+                "name": "Female Protagonist",
+                "rank": 72
+            },
+            {
+                "name": "Time Skip",
+                "rank": 70
+            },
+            {
+                "name": "Pregnancy",
+                "rank": 70
+            },
+            {
+                "name": "Orphan",
+                "rank": 70
+            },
+            {
+                "name": "Age Regression",
+                "rank": 67
+            },
+            {
+                "name": "Tsundere",
+                "rank": 65
+            },
+            {
+                "name": "Seinen",
+                "rank": 64
+            },
+            {
+                "name": "Filmmaking",
+                "rank": 64
+            },
+            {
+                "name": "Bullying",
+                "rank": 62
+            },
+            {
+                "name": "Unrequited Love",
+                "rank": 60
+            },
+            {
+                "name": "Fake Relationship",
+                "rank": 60
+            },
+            {
+                "name": "Love Triangle",
+                "rank": 60
+            },
+            {
+                "name": "Family Life",
+                "rank": 58
+            },
+            {
+                "name": "Primarily Female Cast",
+                "rank": 58
+            },
+            {
+                "name": "Urban Fantasy",
+                "rank": 55
+            },
+            {
+                "name": "Suicide",
+                "rank": 53
+            },
+            {
+                "name": "Fashion",
+                "rank": 53
+            },
+            {
+                "name": "Otaku Culture",
+                "rank": 52
+            },
+            {
+                "name": "School",
+                "rank": 52
+            },
+            {
+                "name": "Female Harem",
+                "rank": 44
+            }
+        ]
+    },
+    "oshi no ko": {
+        "title": {
+            "romaji": "[Oshi no Ko]",
+            "english": "OSHI NO KO"
+        },
+        "popularity": 336742,
+        "averageScore": 84,
+        "genres": [
+            "Drama",
+            "Mystery",
+            "Psychological",
+            "Supernatural"
+        ],
+        "tags": [
+            {
+                "name": "Acting",
+                "rank": 96
+            },
+            {
+                "name": "Tragedy",
+                "rank": 93
+            },
+            {
+                "name": "Idol",
+                "rank": 92
+            },
+            {
+                "name": "Revenge",
+                "rank": 89
+            },
+            {
+                "name": "Twins",
+                "rank": 83
+            },
+            {
+                "name": "Male Protagonist",
+                "rank": 83
+            },
+            {
+                "name": "Urban",
+                "rank": 82
+            },
+            {
+                "name": "Reincarnation",
+                "rank": 80
+            },
+            {
+                "name": "Heterosexual",
+                "rank": 79
+            },
+            {
+                "name": "Detective",
+                "rank": 78
+            },
+            {
+                "name": "Ensemble Cast",
+                "rank": 76
+            },
+            {
+                "name": "Coming of Age",
+                "rank": 73
+            },
+            {
+                "name": "Anti-Hero",
+                "rank": 73
+            },
+            {
+                "name": "Female Protagonist",
+                "rank": 72
+            },
+            {
+                "name": "Time Skip",
+                "rank": 70
+            },
+            {
+                "name": "Pregnancy",
+                "rank": 70
+            },
+            {
+                "name": "Orphan",
+                "rank": 70
+            },
+            {
+                "name": "Age Regression",
+                "rank": 67
+            },
+            {
+                "name": "Tsundere",
+                "rank": 65
+            },
+            {
+                "name": "Seinen",
+                "rank": 64
+            },
+            {
+                "name": "Filmmaking",
+                "rank": 64
+            },
+            {
+                "name": "Bullying",
+                "rank": 62
+            },
+            {
+                "name": "Unrequited Love",
+                "rank": 60
+            },
+            {
+                "name": "Fake Relationship",
+                "rank": 60
+            },
+            {
+                "name": "Love Triangle",
+                "rank": 60
+            },
+            {
+                "name": "Family Life",
+                "rank": 58
+            },
+            {
+                "name": "Primarily Female Cast",
+                "rank": 58
+            },
+            {
+                "name": "Urban Fantasy",
+                "rank": 55
+            },
+            {
+                "name": "Suicide",
+                "rank": 53
+            },
+            {
+                "name": "Fashion",
+                "rank": 53
+            },
+            {
+                "name": "Otaku Culture",
+                "rank": 52
+            },
+            {
+                "name": "School",
+                "rank": 52
+            },
+            {
+                "name": "Female Harem",
+                "rank": 44
+            }
+        ]
+    },
+    "attack on titan": {
+        "title": {
+            "romaji": "Shingeki no Kyojin",
+            "english": "Attack on Titan"
+        },
+        "popularity": 1074702,
+        "averageScore": 85,
+        "genres": [
+            "Action",
+            "Drama",
+            "Fantasy",
+            "Mystery"
+        ],
+        "tags": [
+            {
+                "name": "Kaiju",
+                "rank": 93
+            },
+            {
+                "name": "Revenge",
+                "rank": 93
+            },
+            {
+                "name": "Tragedy",
+                "rank": 89
+            },
+            {
+                "name": "Military",
+                "rank": 88
+            },
+            {
+                "name": "Henshin",
+                "rank": 88
+            },
+            {
+                "name": "Male Protagonist",
+                "rank": 86
+            },
+            {
+                "name": "Primarily Teen Cast",
+                "rank": 86
+            },
+            {
+                "name": "Post-Apocalyptic",
+                "rank": 84
+            },
+            {
+                "name": "Survival",
+                "rank": 84
+            },
+            {
+                "name": "Super Power",
+                "rank": 81
+            },
+            {
+                "name": "Memory Manipulation",
+                "rank": 77
+            },
+            {
+                "name": "Gore",
+                "rank": 77
+            },
+            {
+                "name": "Steampunk",
+                "rank": 77
+            },
+            {
+                "name": "Dystopian",
+                "rank": 77
+            },
+            {
+                "name": "Swordplay",
+                "rank": 74
+            },
+            {
+                "name": "Ensemble Cast",
+                "rank": 74
+            },
+            {
+                "name": "Cannibalism",
+                "rank": 69
+            },
+            {
+                "name": "Espionage",
+                "rank": 68
+            },
+            {
+                "name": "Orphan",
+                "rank": 67
+            },
+            {
+                "name": "Shounen",
+                "rank": 63
+            },
+            {
+                "name": "Kuudere",
+                "rank": 62
+            },
+            {
+                "name": "Medieval",
+                "rank": 60
+            },
+            {
+                "name": "Coming of Age",
+                "rank": 60
+            },
+            {
+                "name": "Amnesia",
+                "rank": 60
+            },
+            {
+                "name": "Time Skip",
+                "rank": 60
+            },
+            {
+                "name": "Suicide",
+                "rank": 55
+            },
+            {
+                "name": "Rural",
+                "rank": 50
+            },
+            {
+                "name": "Primarily Male Cast",
+                "rank": 33
+            },
+            {
+                "name": "Adoption",
+                "rank": 31
+            }
+        ]
     }
 }

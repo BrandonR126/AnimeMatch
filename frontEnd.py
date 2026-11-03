@@ -44,7 +44,7 @@ def WriteResults(text):
     """Put text in the results box and scroll back to the first line."""
     results_box.insert(tk.END, text + "\n")
 
-
+# NOTE: MUST BE A LIST OF ANIME OBJECTS!!
 def ShowResults(anime_list, note="", empty_message="No matching anime found."):
     """Replace the results box with the recommendation text."""
     try:
@@ -99,6 +99,23 @@ def SearchBySimilarFromTitle():
 
     ShowResults(similar_anime, note=note, empty_message="No similar anime found.")
 
+def SearchByTitle():
+    title = title_entry.get().strip()
+
+    if title == "":
+        messagebox.showwarning("Missing input", "Please type an anime title")
+        return
+
+    ShowSearching("Searching for anime: " + title + "...")
+
+    try:
+        anime = search.SearchByTitle(title=title)
+    except Exception as error:
+        print("Search failed: " + str(error))
+        ShowResults(None, note="Something went wrong: " + str(error))
+        return
+
+    ShowResults([anime], empty_message="No similar anime found.")
 
 def build_window():
     """Create the AnimeMatch window and its widgets. Does not start the event loop."""
@@ -112,6 +129,9 @@ def build_window():
         except tk.TclError:
             pass
 
+
+    search_buttons = []
+    
     root = tk.Tk()
     root.title("AnimeMatch")
     root.geometry("1920x1080")
@@ -120,6 +140,7 @@ def build_window():
     # Title
     tk.Label(root, text="AnimeMatch", font=("OCR A Extended", 20, "bold")).pack(pady=10)
 
+    # region Filtered Search
     # lists
     list_frame = tk.Frame(root)
     list_frame.pack(pady=5)
@@ -164,18 +185,29 @@ def build_window():
     filtered_search_frame.pack(pady=5)
     filter_button = tk.Button(filtered_search_frame, text="Search", font=("MS Gothic", 12, "bold"), command=SearchByFilter)
     filter_button.pack(side=tk.LEFT)
+    search_buttons.append(filter_button)
 
-    # Title search
+    # endregion
+
+    # region Title search
     title_frame = tk.Frame(root)
     title_frame.pack(pady=15)
 
-    tk.Label(title_frame, text="Search by Similar to Title: ", font=("OCR A Extended", 11)).pack(side=tk.LEFT)
+    tk.Label(title_frame, text="Title of Anime: ", font=("OCR A Extended", 11)).pack(side=tk.LEFT)
     title_entry = tk.Entry(title_frame, width=25, font=("Yu Gothic Medium", 11))
     title_entry.pack(side=tk.LEFT, padx=5)
 
-    title_button = tk.Button(title_frame, text="Search", font=("MS Gothic", 12, "bold"), command=SearchBySimilarFromTitle)
-    title_button.pack(side=tk.LEFT)
-    search_buttons = [filter_button, title_button]
+    # search by similar
+    similar_button = tk.Button(title_frame, text="Search for Similar", font=("MS Gothic", 12, "bold"), command=SearchBySimilarFromTitle)
+    similar_button.pack(side=tk.LEFT)
+    search_buttons.append(similar_button)
+
+    # search by title
+    title_search_button = tk.Button(title_frame, text="Search for Anime", font=("MS Gothic", 12, "bold"), command=SearchByTitle)
+    title_search_button.pack(side=tk.LEFT, padx=5)
+    search_buttons.append(title_search_button)
+
+    # endregion
 
     # Results area (simple Text + Scrollbar)
     tk.Label(root, text="Results:", font=("MS Gothic", 12, "bold")).pack(pady=(15, 0))
@@ -215,7 +247,6 @@ def open_lists_window():
                            command=lambda list_data=allLists[list_name]: show_list(list_data))
         button.pack(pady=5)
 
-# s
 def show_list(list):
     SetBusy(True)
     ShowSearching("Fetching curated list...")
